@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Display a map</title>
+<meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+<script src="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js"></script>
+<link href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css" rel="stylesheet" />
+<style>
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+
+    .mapboxgl-popup {
+      padding: 5px;
+      width: 400px;
+      text-align: center;
+    }
+
+    .mapboxgl-popup-close-button {
+      display: none;
+    }
+
+    .mapboxgl-popup-content {
+      font: 400 15px/22px 'Source Sans Pro', 'Helvetica Neue', Sans-serif;
+      padding: 0;
+      width: 404px;
+    }
+
+    .mapboxgl-popup-content-wrapper {
+      width: 400px;
+    }
+
+    .mapboxgl-popup-content h3 {
+      background: rgb(61, 59, 59);
+      text-align: center;
+      color: #fff;
+      margin: 0;
+      display: block;
+      padding: 15px;
+      font-weight: 700;
+      margin-top: -5px;
+    }
+
+    .mapboxgl-popup-content h4 {
+      margin: 0;
+      display: block;
+      padding: 10px 3px 10px 10px;
+      font-weight: 400;
+    }
+
+    .mapboxgl-container {
+      cursor: pointer;
+    }
+
+    .mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
+      margin-top: 3px;
+    }
+
+    .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
+      border-bottom-color: rgb(61, 59, 59);
+    }
+
+    .thumbnail {
+      text-align: center;
+      width: 400px;
+		}
+
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+	mapboxgl.accessToken = 'pk.eyJ1IjoiY2VudGVyZm9ybGFuZHVzZSIsImEiOiJja2c4dGdsZHUwMmdqMnltdW9yMmVyYTU1In0.xqVnGFtMh2lSPD-EOYArKg';
+    var map = new mapboxgl.Map({
+        container: 'map', // container id
+        style: 'mapbox://styles/centerforlanduse/ckgb3fztl0qoi19pmtkz10hn5', // style URL
+        center: [-117.573, 33.505], // starting position [lng, lat]
+        zoom: 7.7 // starting zoom
+    });
+
+    map.on('click', 'coastrealty-1-7612', function (e) {
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        var image_description = '<img class="thumbnail" src="' + e.features[0].properties.imagelink + '"> <br> <h4>' + e.features[0].properties.address + '</h4>'
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(image_description)
+            .addTo(map);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the coastrealty-1-7612 layer.
+    map.on('mouseenter', 'coastrealty-1-7612', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'coastrealty-1-7612', function () {
+        map.getCanvas().style.cursor = '';
+    });
+
+</script>
+
+</body>
+</html>

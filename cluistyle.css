@@ -1,0 +1,53 @@
+	body { margin: 0; padding: 0; }
+	#map { position: absolute; top: 0; bottom: 0; width: 100%; }
+
+
+    .mapboxgl-popup {
+      padding: 5px;
+      width: auto;
+			height: auto;
+      text-align: center;
+    }
+
+    .mapboxgl-popup-close-button {
+      display: none;
+    }
+
+    .mapboxgl-popup-content {
+      font: 400 15px/22px 'Ubuntu Mono', monospace;
+			font-size: 1.4em;
+      padding: 10px;
+      width: 400px;
+			height: auto;
+			text-align: center;
+    }
+
+    .mapboxgl-popup-content-wrapper {
+      width: auto;
+    }
+
+    .mapboxgl-popup-content h4 {
+      margin: 0;
+      display: block;
+      padding: 10px 3px 10px 10px;
+      font-weight: 400;
+    }
+
+    .mapboxgl-container {
+      cursor: pointer;
+    }
+
+    .mapboxgl-popup-anchor-top>.mapboxgl-popup-content {
+      margin-top: 3px;
+    }
+
+    .mapboxgl-popup-anchor-top>.mapboxgl-popup-tip {
+      border-bottom-color: rgb(61, 59, 59);
+    }
+
+    .thumbnail {
+      text-align: center;
+      max-width:100%;
+			max-height:100%;
+			box-shadow: 2px;
+		}
