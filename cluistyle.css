@@ -14,8 +14,8 @@
     }
 
     .mapboxgl-popup-content {
-      font: 400 15px/22px 'Ubuntu Mono', monospace;
-			font-size: 1.4em;
+      font: 400 16px/16px 'Cormorant Garamond', serif;
+			font-weight: 300;
       padding: 10px;
       width: 400px;
 			height: auto;
@@ -28,9 +28,19 @@
 
     .mapboxgl-popup-content h4 {
       margin: 0;
+			font-weight: 300;
       display: block;
-      padding: 10px 3px 10px 10px;
-      font-weight: 400;
+			text-align: left;
+			font-size: 1.2em;
+    }
+
+    .mapboxgl-popup-content h5 {
+						font-weight: 300;
+			margin: 0;
+      display: block;
+			text-align: right;
+			font-size: .7em;
+			margin-top: -5px;
     }
 
     .mapboxgl-container {
